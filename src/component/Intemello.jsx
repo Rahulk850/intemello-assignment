@@ -64,7 +64,7 @@ const KonvaCanvas = () => {
     const text = new Konva.Text({
       x: 100,
       y: 300,
-      text: "Hello Intemello !",
+      text: "Hello Intellemo !",
       fontSize: 30,
       draggable: true,
       name: "text",
@@ -144,7 +144,9 @@ const KonvaCanvas = () => {
     // layer.draw();
   }, []);
 
+  const [isPlaying , setIsplaing] = useState(false)
   const playPauseVideo = () => {
+    setIsplaing(!isPlaying)
     const videoNode = layer.findOne(".video");
     if (videoNode && videoNode.image()) {
       const video = videoNode.image();
@@ -157,6 +159,7 @@ const KonvaCanvas = () => {
   };
 
   const stopVideo = () => {
+    setIsplaing(false); 
     const videoNode = layer.findOne(".video");
     if (videoNode && videoNode.image()) {
       const video = videoNode.image();
@@ -167,7 +170,7 @@ const KonvaCanvas = () => {
 
   const moveNode = (direction) => {
     if (selectedNode) {
-      const step = 10; // Change this value to adjust the movement step
+      const step = 10; 
       const { x, y } = selectedNode.position();
 
       switch (direction) {
@@ -200,7 +203,7 @@ const KonvaCanvas = () => {
           onClick={playPauseVideo}
           className="bg-green-500 text-white px-4 py-2 rounded-full mt-4 "
         >
-          Play/Pause Video
+          {isPlaying ? "Pause" : "Play"}
         </button>
         <button
           onClick={stopVideo}
